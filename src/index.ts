@@ -1,3 +1,5 @@
 import {test} from './test';
 
-test(5);
+test(6);
+
+document.body.innerHTML = 'Hello World';
