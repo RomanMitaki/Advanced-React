@@ -3,7 +3,7 @@ node_modules/
 
 # Build artifacts
 dist/
-build/
+/build/
 
 # Logs and temporary files
 npm-debug.log*
@@ -46,4 +46,4 @@ coverage/
 lerna-debug.log
 
 # Storybook static files
-storybook-static/
+storybook-static/!/config/build/
