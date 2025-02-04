@@ -26,9 +26,9 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
         }
 
     const typescriptLoader = {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+            test: /\.tsx?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/,
     }
 
     const fontLoader = {
@@ -38,10 +38,26 @@ export function buildLoaders({isDev}: BuildOptions): webpack.RuleSetRule[] {
                 filename: 'fonts/[name][ext]',
             },
         }
+        
+    const svgLoader = {
+            test: /\.svg$/,
+            use: ['@svgr/webpack'],
+    }
+
+    const fileLoader = {
+            test: /\.(png|jpe?g|gif)$/i,
+            use: [
+                {
+                    loader: 'file-loader',
+                },
+            ],
+    }
 
     return [
         fontLoader,
         cssLoader,
         typescriptLoader,
+        svgLoader,
+        fileLoader,
     ]
 }
