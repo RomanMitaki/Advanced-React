@@ -3,7 +3,7 @@ module.exports = {
         browser: true,
         es2021: true,
     },
-    extends: ['plugin:react/recommended', 'airbnb'],
+    extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended'],
     parser: '@typescript-eslint/parser',
 
     parserOptions: {
@@ -18,6 +18,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
+        'import',
     ],
     rules: {
         'react/jsx-indent': ['error', 4],
@@ -36,6 +37,31 @@ module.exports = {
                 jsx: 'never',
                 ts: 'never',
                 tsx: 'never',
+            },
+        ],
+        'import/order': [
+            'error',
+            {
+                groups: [
+                    ['builtin', 'external'],
+                    'internal',
+                    ['parent', 'sibling', 'index'],
+                    'unknown',
+                ],
+                pathGroups: [
+                    {
+                        pattern: '*.scss',
+                        group: 'index',
+                        position: 'after',
+                    },
+                    {
+                        pattern: '*.css',
+                        group: 'index',
+                        position: 'after',
+                    },
+                ],
+                pathGroupsExcludedImportTypes: ['builtin'],
+                'newlines-between': 'always',
             },
         ],
         'import/prefer-default-export': 'off',

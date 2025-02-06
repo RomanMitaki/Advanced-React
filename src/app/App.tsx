@@ -1,8 +1,10 @@
 import React, { Suspense } from 'react';
+
 import { useTheme } from '@/app/providers/ThemeProvider';
 import { classNames } from '@/shared/lib/classNames';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
+
 import { AppRouter } from './providers/router';
 
 import './styles/index.scss';

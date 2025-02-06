@@ -1,23 +1,21 @@
-@import '@/app/styles/fonts.scss';
-@import '@/app/styles/variables/global.scss';
-@import '@/app/styles/reset.scss';
-@import '@/app/styles/themes/dark.scss';
-@import '@/app/styles/themes/light.scss';
+@import '@/app/styles/fonts';
+@import '@/app/styles/variables/global';
+@import '@/app/styles/reset';
+@import '@/app/styles/themes/dark';
+@import '@/app/styles/themes/light';
 
 .app {
-  font: var(--font-m);
-
-  background: var(--bg-color);
-  color: var(--primary-color);
-
-  min-height: 100vh;
+    font: var(--font-m);
+    background: var(--bg-color);
+    color: var(--primary-color);
+    min-height: 100vh;
 }
 
 .content-page {
-  display: flex;
+    display: flex;
 }
 
 .page-wrapper {
-  flex-grow: 1;
-  padding: 1rem;
+    flex-grow: 1;
+    padding: 1rem;
 }
