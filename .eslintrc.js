@@ -2,6 +2,7 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
+        jest: true,
     },
     extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended'],
     parser: '@typescript-eslint/parser',
@@ -28,6 +29,14 @@ module.exports = {
         'react/jsx-filename-extension': [
             'error',
             { extensions: ['.tsx', '.jsx'] },
+        ],
+        'max-len': [
+            'error',
+            {
+                code: 110,
+                ignoreComments: true,
+                ignoreTrailingComments: true,
+            },
         ],
         'import/extensions': [
             'error',
