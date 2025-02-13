@@ -85,7 +85,7 @@ module.exports = {
         '@typescript-eslint/strict-boolean-expressions': 'off',
         '@typescript-eslint/naming-convention': 'off',
         '@typescript-eslint/ban-ts-comment': 1,
-        'i18next/no-literal-string': ['warn', { markupOnly: true }],
+        'i18next/no-literal-string': ['warn', { markupOnly: true, ignoreAttribute: ['data-testid'] }],
         '@typescript-eslint/ban-types': 'off',
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
@@ -93,6 +93,14 @@ module.exports = {
     globals: {
         __IS_DEV__: true,
     },
+    overrides: [
+        {
+            files: ['**/src/**/*.test.{ts,tsx}'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            },
+        },
+    ],
     settings: {
         'import/resolver': {
             alias: {
