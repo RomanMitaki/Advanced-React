@@ -1,4 +1,5 @@
 import { RouteProps } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 import { MainPageAsync } from '@/pages/MainPage';
 import { AboutPageAsync } from '@/pages/AboutPage';
@@ -16,8 +17,10 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.NOT_FOUND]: '*',
 };
 
-export interface AppRoute extends RouteProps {
-    key: string; // добавляем ключ для маршрутов
+export interface AppRoute {
+    key: string;
+    path: string; // Обязательно нужен путь
+    element: ReactNode; // Ссылка на компонент
 }
 
 export const routeConfig: AppRoute[] = [
