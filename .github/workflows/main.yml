@@ -6,33 +6,45 @@ on:
     branches: [ main ]
 jobs:
   Pipeline:
-    runs-on: [macos-latest]
+    runs-on: [ubuntu-latest]
     strategy:
       matrix:
         node-version: [ 18.x ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Staring Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install modules
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: install dependencies
         run: npm ci
+
       - name: build production project
         run: npm run build:prod
-      - name: linting typescript
-        run: npm run lint:ts
+
+      - name: linting
+        run: |
+          npm run lint:ts
+          npm run lint:scss
         if: always()
-      - name: linting scss
-        run: npm run lint:scss
-        if: always()
+
       - name: unit testing
         run: npm run test:unit
-        if: always()
+        if: success()
+
       - name: build storybook
         run: npm run storybook:build
-        if: always()
+        if: success()
+
       - name: screenshot testing
         run: npm run test:ui:ci
-        if: always()
+        if: success()
