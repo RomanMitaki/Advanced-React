@@ -1,4 +1,3 @@
-import { RouteProps } from 'react-router-dom';
 import { ReactNode } from 'react';
 
 import { MainPageAsync } from '@/pages/MainPage';
