@@ -82,7 +82,15 @@ module.exports = {
         'react/jsx-props-no-spreading': 'warn',
         'react/function-component-definition': 'off',
         'no-shadow': 'off',
-        'no-unused-vars': 'warn',
+        '@typescript-eslint/no-unused-vars': [
+            'warn',
+            {
+                vars: 'all',
+                args: 'after-used',
+                ignoreRestSiblings: false,
+                varsIgnorePattern: '^.*$', // Игнорируем все переменные, включая значения enum
+            },
+        ],
         'no-underscore-dangle': 'off',
         'import/no-extraneous-dependencies': 'off',
         'react/react-in-jsx-scope': 'off',
