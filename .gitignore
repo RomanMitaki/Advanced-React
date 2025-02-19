@@ -47,3 +47,5 @@ lerna-debug.log
 
 # Storybook static files
 storybook-static/!/config/build/
+.loki/report.html
+.loki/report.json
