@@ -24,4 +24,9 @@
     --inverted-secondary-color: #fff;
     --accent-color: #a67c52;
     --card-color: #fff5e1;
+    --overlay-basic: rgb(0 0 0 / 60%);
+
+    // z-indexes
+    --modal-z-index: 1050;
+    --modal-backdrop-z-index: 1040;
 }
