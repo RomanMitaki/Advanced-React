@@ -20,7 +20,7 @@ export enum ButtonSize {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string,
-    theme: ThemeButton,
+    theme?: ThemeButton,
     square?: boolean,
     size?: ButtonSize
 }
@@ -29,7 +29,7 @@ export const Button: FC<ButtonProps> = (props) => {
     const {
         className,
         children,
-        theme,
+        theme = ThemeButton.BACKGROUND,
         square,
         size = ButtonSize.M,
         ...otherProps

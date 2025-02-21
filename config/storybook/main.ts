@@ -1,6 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import path from 'path';
-import { type RuleSetRule } from 'webpack';
+import { DefinePlugin, type RuleSetRule } from 'webpack';
 
 const config: StorybookConfig = {
     stories: ['../../src/**/*.mdx', '../../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -22,6 +22,12 @@ const config: StorybookConfig = {
     },
 
     webpackFinal: async (config) => {
+        config.plugins?.push(
+            new DefinePlugin({
+                __IS_DEV__: JSON.stringify(true), // Определяем глобальную переменную
+            }),
+        );
+
         // Добавляем поддержку TypeScript для обработки `stories.ts/tsx`.
         config.module?.rules?.push({
             test: /\.(ts|tsx|js|jsx|mjs)$/i,
