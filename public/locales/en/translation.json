@@ -4,5 +4,8 @@
   "Главная": "Main",
   "Страница не найдена": "Page not found",
   "Произошла непредвиденная ошибка": "An unexpected error occurred",
-  "Обновить страницу": "Refresh page"
+  "Обновить страницу": "Refresh page",
+  "Войти": "Sign in",
+  "Введите имя": "Enter name",
+  "Введите пароль": "Enter password"
 }
