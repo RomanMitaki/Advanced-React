@@ -1,0 +1,8 @@
+echo "Running pre-commit hook..."
+
+npm run lint:ts
+npm run lint:scss
+npm run test:unit
+
+echo "Pre-commit hook completed!"
+
