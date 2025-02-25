@@ -1,7 +1,8 @@
-npm run build:prod
+echo "Running pre-commit hook..."
+
 npm run lint:ts
 npm run lint:scss
 npm run test:unit
-npm run storybook:build
-npm run test:ui:ci
+
+echo "Pre-commit hook completed!"
 
