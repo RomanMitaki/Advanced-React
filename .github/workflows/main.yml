@@ -24,7 +24,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: install dependencies
-        run: npm ci
+        run: npm install --include=dev
 
       - name: build production project
         run: npm run build:prod
