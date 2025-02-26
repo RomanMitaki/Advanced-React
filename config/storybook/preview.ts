@@ -19,7 +19,12 @@ const preview: Preview = {
             },
         },
     },
-    decorators: [StyleDecorator, ThemeDecoratorLight, RouterDecorator, ReduxDecorator(initialState)],
+    decorators: [
+        StyleDecorator,
+        ThemeDecoratorLight,
+        RouterDecorator,
+        ReduxDecorator(initialState),
+    ],
 };
 
 export default preview;

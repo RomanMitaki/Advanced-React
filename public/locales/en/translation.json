@@ -6,6 +6,9 @@
   "Произошла непредвиденная ошибка": "An unexpected error occurred",
   "Обновить страницу": "Refresh page",
   "Войти": "Sign in",
+  "Выйти": "Sign out",
   "Введите имя": "Enter name",
-  "Введите пароль": "Enter password"
+  "Введите пароль": "Enter password",
+  "Форма авторизации": "Sign-in form",
+  "Вы ввели неверный логин и/или пароль": "Invalid username or password"
 }
