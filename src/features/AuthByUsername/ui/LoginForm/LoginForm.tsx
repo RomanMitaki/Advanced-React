@@ -7,22 +7,34 @@ import {
 } from '@/shared';
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider';
 import { TextTheme } from '@/shared/ui/Text/Text';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
+import { getLoginUsername } from '../../model/selectors/getLoginUsername';
+import { getLoginPassword } from '../../model/selectors/getLoginPassword';
+import { getLoginError } from '../../model/selectors/getLoginError';
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';
 import { loginByUsername } from '../../model/services/loginByUserName/loginByUserName';
-import { getLoginState } from '../../model/selectors/getLoginState';
-import { loginActions } from '../../model/slice/loginSlice';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
 
-interface LoginFormProps {
+export interface LoginFormProps {
     className?: string,
 }
 
-export const LoginForm = memo(({ className }: LoginFormProps) => {
+const initialReducers: ReducersList = {
+    loginForm: loginReducer,
+};
+
+const LoginForm = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const {
-        username, password, error, isLoading,
-    } = useAppSelector(getLoginState);
+    const username = useAppSelector(getLoginUsername);
+    const password = useAppSelector(getLoginPassword);
+    const error = useAppSelector(getLoginError);
+    const isLoading = useAppSelector(getLoginIsLoading);
 
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginActions.setUsername(value));
@@ -37,32 +49,36 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
     }, [dispatch, password, username]);
 
     return (
-        <div className={classNames(cls.LoginForm, {}, [className])}>
-            <Text title={t('Форма авторизации')} />
-            {error && <Text theme={TextTheme.ERROR} text={t('Вы ввели неверный логин и/или пароль')} />}
-            <Input
-                type="text"
-                className={cls.input}
-                placeholder={t('Введите имя')}
-                autoFocus
-                onChange={onChangeUsername}
-                value={username}
-            />
-            <Input
-                type="text"
-                className={cls.input}
-                placeholder={t('Введите пароль')}
-                onChange={onChangePassword}
-                value={password}
-            />
-            <Button
-                className={cls.loginBtn}
-                theme={ThemeButton.OUTLINE}
-                onClick={onLoginClick}
-                disabled={isLoading}
-            >
-                {t('Войти')}
-            </Button>
-        </div>
+        <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
+            <div className={classNames(cls.LoginForm, {}, [className])}>
+                <Text title={t('Форма авторизации')} />
+                {error && <Text theme={TextTheme.ERROR} text={t('Вы ввели неверный логин и/или пароль')} />}
+                <Input
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Введите имя')}
+                    autoFocus
+                    onChange={onChangeUsername}
+                    value={username}
+                />
+                <Input
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Введите пароль')}
+                    onChange={onChangePassword}
+                    value={password}
+                />
+                <Button
+                    className={cls.loginBtn}
+                    theme={ThemeButton.OUTLINE}
+                    onClick={onLoginClick}
+                    disabled={isLoading}
+                >
+                    {t('Войти')}
+                </Button>
+            </div>
+        </DynamicModuleLoader>
     );
 });
+
+export default LoginForm;
