@@ -33,7 +33,6 @@ export const Modal = (props: ModalProps) => {
         if (isOpen) {
             setIsMounted(true);
         }
-        return () => setIsMounted(false);
     }, [isOpen]);
 
     const timerRef = useRef<ReturnType<typeof setTimeout>>();

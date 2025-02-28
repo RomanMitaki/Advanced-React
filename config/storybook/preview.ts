@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react';
+import { ReducersMapObject } from '@reduxjs/toolkit';
 
 import { StyleDecorator } from '@/shared/config/storybook/StyleDecorator/StyleDecorator';
 import { ThemeDecoratorLight } from '@/shared/config/storybook/ThemeDecorator/ThemeDecoratorLight';
@@ -6,8 +7,12 @@ import { RouterDecorator } from '@/shared/config/storybook/RouterDecorator/Route
 import { ReduxDecorator } from '@/shared/config/storybook/ReduxDecorator/ReduxDecorator';
 import { DeepPartial } from '@/app/types/general';
 import { StateSchema } from '@/app/providers/StoreProvider';
+import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice';
 
 const initialState: DeepPartial<StateSchema> = { counter: { value: 10 } };
+const asyncReducers = {
+    loginForm: loginReducer,
+} as ReducersMapObject<StateSchema>;
 
 const preview: Preview = {
     parameters: {
@@ -23,7 +28,7 @@ const preview: Preview = {
         StyleDecorator,
         ThemeDecoratorLight,
         RouterDecorator,
-        ReduxDecorator(initialState),
+        ReduxDecorator(initialState, asyncReducers),
     ],
 };
 
