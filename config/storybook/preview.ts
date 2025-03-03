@@ -8,10 +8,12 @@ import { ReduxDecorator } from '@/shared/config/storybook/ReduxDecorator/ReduxDe
 import { DeepPartial } from '@/app/types/general';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice';
+import { profileReducer } from '@/entities/Profile';
 
 const initialState: DeepPartial<StateSchema> = { counter: { value: 10 } };
 const asyncReducers = {
     loginForm: loginReducer,
+    profile: profileReducer,
 } as ReducersMapObject<StateSchema>;
 
 const preview: Preview = {
