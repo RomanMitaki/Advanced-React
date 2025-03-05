@@ -38,7 +38,7 @@ module.exports = {
         'max-len': [
             'error',
             {
-                code: 110,
+                code: 120,
                 ignoreComments: true,
                 ignoreTrailingComments: true,
             },
@@ -109,6 +109,7 @@ module.exports = {
     },
     globals: {
         __IS_DEV__: true,
+        __API__: true,
     },
     overrides: [
         {
