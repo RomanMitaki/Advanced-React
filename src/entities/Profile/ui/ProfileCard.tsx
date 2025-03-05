@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames';
 import { useAppSelector } from '@/app/providers/StoreProvider';
 import { getProfileData } from '@/entities/Profile/model/selectors/getProfileData/getProfileData';
-import { getProfileIsLoading } from '@/entities/Profile/model/selectors/getProfileIsLoading/getProfileIsLoading';
-import { getProfileError } from '@/entities/Profile/model/selectors/getProfileError/getProfileError';
 import {
     Button, Input, Text, ThemeButton,
 } from '@/shared';
