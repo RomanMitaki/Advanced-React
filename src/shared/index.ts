@@ -5,6 +5,8 @@ import { AppLink, AppLinkTheme } from './ui/AppLink/AppLink';
 import { Button, ThemeButton } from './ui/Button/Button';
 import { Input } from './ui/Input/Input';
 import { Text } from './ui/Text/Text';
+import { Avatar } from './ui/Avatar/Avatar';
+import { Select } from './ui/Select/Select';
 
 export {
     Button,
@@ -16,4 +18,6 @@ export {
     Portal,
     Input,
     Text,
+    Avatar,
+    Select,
 };

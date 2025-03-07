@@ -25,6 +25,7 @@ export interface AppRoute {
     key: string;
     path: string; // Обязательно нужен путь
     element: ReactNode; // Ссылка на компонент
+    authOnly?: boolean;
 }
 
 export const routeConfig: AppRoute[] = [
@@ -42,6 +43,7 @@ export const routeConfig: AppRoute[] = [
         key: RoutePath.profile,
         path: RoutePath.profile,
         element: <ProfilePage />,
+        authOnly: true,
     },
     // last
     {
