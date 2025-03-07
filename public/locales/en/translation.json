@@ -10,5 +10,7 @@
   "Введите имя": "Enter name",
   "Введите пароль": "Enter password",
   "Форма авторизации": "Sign-in form",
-  "Вы ввели неверный логин и/или пароль": "Invalid username or password"
+  "Вы ввели неверный логин и/или пароль": "Invalid username or password",
+  "Укажите валюту": "Specify currency",
+  "Укажите cтрану": "Specify country"
 }
