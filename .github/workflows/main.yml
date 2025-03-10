@@ -60,6 +60,7 @@ jobs:
         with:
           name: loki-baseline
           path: .loki/reference
+        continue-on-error: true
 
       # 10. Запускаем визуальные тесты (Loki)
       - name: Screenshot Testing (Loki)
