@@ -56,7 +56,7 @@ jobs:
 
       # 9. Восстанавливаем baseline для визуальных тестов
       - name: Restore Loki Baseline
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: loki-baseline
           path: .loki/reference
@@ -69,14 +69,14 @@ jobs:
       # 11. Сохраняем новый baseline, если есть изменения
       - name: Publish Loki Baseline
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: loki-baseline
           path: .loki/current
 
       # 12. Сохраняем результаты (например, снимки экрана, отчеты)
       - name: Upload Loki Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: loki-report
           path: .loki
