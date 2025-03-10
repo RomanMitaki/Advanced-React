@@ -1,21 +1,26 @@
 name: linting, testing, building
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
+
 jobs:
   Pipeline:
     runs-on: [ubuntu-latest]
     strategy:
       matrix:
-        node-version: [ 18.x ]
+        node-version: [18.x]
 
     steps:
+      # 1. Проверяем репозиторий
       - uses: actions/checkout@v4
+
+      # 2. Устанавливаем Node.js
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
+      # 3. Кэшируем npm-зависимости для ускорения
       - name: Cache node modules
         uses: actions/cache@v3
         with:
@@ -23,26 +28,55 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: install dependencies
+
+      # 4. Устанавливаем зависимости
+      - name: Install dependencies
         run: npm install --include=dev
 
-      - name: build production project
+      # 5. Собираем проект в продакшн-режиме
+      - name: Build production project
         run: npm run build:prod
 
-      - name: linting
+      # 6. Проверяем линтинг TypeScript и SCSS
+      - name: Linting
         run: |
           npm run lint:ts
           npm run lint:scss
         if: always()
 
-      - name: unit testing
+      # 7. Запускаем unit-тесты
+      - name: Unit Testing
         run: npm run test:unit
         if: always()
 
-      - name: build storybook
+      # 8. Собираем Storybook (если нужен билд)
+      - name: Build Storybook
         run: npm run storybook:build
         if: always()
 
-      - name: screenshot testing
+      # 9. Восстанавливаем baseline для визуальных тестов
+      - name: Restore Loki Baseline
+        uses: actions/download-artifact@v3
+        with:
+          name: loki-baseline
+          path: .loki/reference
+
+      # 10. Запускаем визуальные тесты (Loki)
+      - name: Screenshot Testing (Loki)
         run: npm run test:ui:ci
         if: always()
+
+      # 11. Сохраняем новый baseline, если есть изменения
+      - name: Publish Loki Baseline
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: loki-baseline
+          path: .loki/current
+
+      # 12. Сохраняем результаты (например, снимки экрана, отчеты)
+      - name: Upload Loki Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: loki-report
+          path: .loki
