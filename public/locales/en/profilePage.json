@@ -11,5 +11,11 @@
   "Ваш возраст": "Your age",
   "Город": "City",
   "Введите имя пользователя": "Enter username",
-  "Введите ссылку на аватар": "Enter the link to the avatar"
+  "Введите ссылку на аватар": "Enter the link to the avatar",
+  "Ошибка сервера при сохранении": "Server error while saving",
+  "Укажите корректный возраст": "Please enter the correct age",
+  "Укажите cтрану": "Specify the country",
+  "Укажите корректные имя и фамилию": "Please enter your correct first and last name.",
+  "Данные не указаны": "Data not specified",
+  "Укажите корректную валюту": "Please enter the correct currency"
 }
